@@ -1,0 +1,26 @@
+{
+  "pages": {
+    "admin/newsletter-modal": {
+      "path": "/admin/marketing/newsletter-modal",
+      "extensible": true
+    },
+    "admin/newsletter-modal/settings": {
+      "path": "/admin/marketing/newsletter-modal/settings"
+    }
+  },
+  "extensions": {
+    "admin/newsletter-modal": {
+      "component": "index"
+    },
+    "admin/newsletter-modal/settings": {
+      "component": "adminSettings"
+    },
+    "admin/admin.container.sidebar.marketing/newsletter-modal": {
+      "component": "gocommerce.admin/SideBarItem",
+      "props": {
+        "page": "admin/newsletter-modal/settings",
+        "title": "admin.container.sidebar.newsletter"
+      }
+    }
+  }
+}

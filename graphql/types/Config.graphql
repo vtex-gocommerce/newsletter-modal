@@ -1,0 +1,7 @@
+type Config {
+  myCreditsEnabled: Boolean
+}
+
+input ConfigInput {
+  myCreditsEnabled: Boolean!
+}

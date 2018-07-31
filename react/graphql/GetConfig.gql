@@ -1,0 +1,5 @@
+query GetConfig @context(scope: "private") {
+  getConfig {
+    myCreditsEnabled
+  }
+}
