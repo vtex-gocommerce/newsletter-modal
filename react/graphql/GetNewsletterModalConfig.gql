@@ -1,0 +1,10 @@
+query GetNewsletterModalConfig @context(scope: "private") {
+  getNewsletterModalConfig {
+    modalTitle
+    modalDescription
+    modalTextSuccess
+    modalEnabled
+    modalShowRule
+    modalShowWhen
+  }
+}

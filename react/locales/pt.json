@@ -1,3 +1,9 @@
 {
-  "admin.container.sidebar.newsletter": "Newsletter"
+  "admin.container.sidebar.newsletter": "Newsletter",
+  "newsletter-modal.admin.settings.page-title": "Configurações",
+  "newsletter-modal.admin.newsletter": "Newsletter",
+  "newsletter-modal.admin.settings": "Configurações",
+  "newsletter-modal.admin.general": "Geral",
+  "newsletter-modal.admin.popup": "Pop-up",
+  "newsletter-modal.admin.apps": "Apps"
 }

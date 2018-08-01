@@ -17,7 +17,8 @@
     "graphql": "1.x"
   },
   "dependencies": {
-    "gocommerce.admin": "0.x"
+    "gocommerce.admin": "0.x",
+    "gocommerce.styleguide": "0.x"
   },
   "policies": [
     {

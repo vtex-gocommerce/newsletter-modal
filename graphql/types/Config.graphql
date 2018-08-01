@@ -1,7 +1,17 @@
-type Config {
-  myCreditsEnabled: Boolean
+type NewsletterModalConfig {
+  modalTitle: String
+  modalDescription: String
+  modalTextSuccess: String
+  modalEnabled: Boolean
+  modalShowRule: String
+  modalShowWhen: String
 }
 
-input ConfigInput {
-  myCreditsEnabled: Boolean!
+input NewsletterModalConfigInput {
+  modalTitle: String
+  modalDescription: String
+  modalTextSuccess: String
+  modalEnabled: Boolean
+  modalShowRule: String
+  modalShowWhen: String
 }

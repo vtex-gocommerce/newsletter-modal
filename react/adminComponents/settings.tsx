@@ -1,54 +1,93 @@
 import * as React from 'react'
 import { Query, Mutation } from 'react-apollo'
-import GetConfig from './graphql/GetConfig.gql'
-import SetConfig from './graphql/SetConfig.gql'
+import { FormattedMessage, injectIntl } from 'react-intl'
+import { Helmet } from 'render'
+import PageHeader from './components/pageHeader'
+import GetNewsletterModalConfig from './../graphql/GetNewsletterModalConfig.gql'
+import SetNewsletterModalConfig from './../graphql/SetNewsletterModalConfig.gql'
 
-class NewsletterConfig extends React.Component<any, any> {
+interface NewsletterConfigProps {
+  intl: {
+    formatMessage({ id: string }, values?: {
+      [key: string]: string | number
+    })
+  }
+  locale: string
+}
+
+class NewsletterConfig extends React.Component<NewsletterConfigProps, {}> {
   render() {
+    const breadcrumbConfig = [
+      { title: <FormattedMessage id="newsletter-modal.admin.newsletter" />, to: 'admin/marketing/newsletter-modal' },
+      { title: <FormattedMessage id="newsletter-modal.admin.settings" /> }
+    ]
+    const tabsConfig = [
+      { label: <FormattedMessage id="newsletter-modal.admin.general" />, id: 'general' },
+      { label: <FormattedMessage id="newsletter-modal.admin.popup" />, id: 'popup' },
+      { label: <FormattedMessage id="newsletter-modal.admin.apps" />, id: 'apps' }
+    ]
     return (
-      <div>
-        <Query query={GetConfig} ssr={false}>
-          {({ loading: queryLoading, error: queryError, data }) => (
-            <Mutation
-              mutation={SetConfig}
-              update={(cache, { data }) => {
-                cache.writeQuery({
-                  query: GetConfig,
-                  data: {
-                    getConfig: {
-                      myCreditsEnabled: data.setConfig.myCreditsEnabled,
-                      __typename: data.setConfig.__typename,
+      <div className="min-h-100">
+        <Helmet>
+          <title>{this.props.intl.formatMessage({ id: 'newsletter-modal.admin.settings.page-title' })}</title>
+        </Helmet>
+        <PageHeader
+          breadcrumbConfig={breadcrumbConfig}
+          tabsConfig={tabsConfig}
+          activeTab={'general'}
+          handleChangeTab={() => ''}
+        />
+        <div className="g-mh8 g-mb8 g-mt14 g-pt8">
+          <Query query={GetNewsletterModalConfig} ssr={false}>
+            {({ loading: queryLoading, error: queryError, data }) => (
+              <Mutation
+                mutation={SetNewsletterModalConfig}
+                update={(cache, { data }) => {
+                  cache.writeQuery({
+                    query: GetNewsletterModalConfig,
+                    data: {
+                      getNewsletterModalConfig: {
+                        modalEnabled: data.setNewsletterModalConfig.modalEnabled,
+                        __typename: data.setNewsletterModalConfig.__typename,
+                      },
                     },
-                  },
-                })
-              }}
-            >
-              {(
-                setConfig,
-                { error: mutationError, loading: mutationLoading },
-              ) => {
-                const enabled = data && data.getConfig && data.getConfig.myCreditsEnabled
-                return queryError || mutationError ? (
-                  <div>DEU ERRO</div>
-                ) : (
-                  <div>NEWSLETTER = {enabled? 'true' : 'false'}
-                    <br />
-                    <button onClick={() => {
-                      setConfig({
-                        variables: {
-                          config: { myCreditsEnabled: !enabled },
-                        },
-                      })
-                    }}>CHANGE!</button>
-                  </div>
-                )
-              }}
-            </Mutation>
-          )}
-        </Query>
+                  })
+                }}
+              >
+                {(
+                  setNewsletterModalConfig,
+                  { error: mutationError, loading: mutationLoading },
+                ) => {
+                  const enabled = data && data.getNewsletterModalConfig && data.getNewsletterModalConfig.modalEnabled
+                  return queryError || mutationError ? (
+                    <div>DEU ERRO</div>
+                  ) : (
+                    <div>NEWSLETTER = {enabled ? 'true' : 'false'}
+                      <br />
+                      <button onClick={() => {
+                        setNewsletterModalConfig({
+                          variables: {
+                            config: {
+                              modalTitle: '',
+                              modalDescription: '',
+                              modalTextSuccess: '',
+                              modalEnabled: !enabled,
+                              modalShowRule: '',
+                              modalShowWhen: '',
+                            },
+                          },
+                        })
+                      }}>CHANGE!</button>
+                    </div>
+                  )
+                }}
+              </Mutation>
+            )}
+          </Query>
+        </div>
       </div>
     )
   }
 }
 
-export default NewsletterConfig
+export default injectIntl(NewsletterConfig)

@@ -1,5 +1,0 @@
-mutation SetConfig($config: ConfigInput!) @context(scope: "private") {
-  setConfig(config: $config) {
-    myCreditsEnabled
-  }
-}

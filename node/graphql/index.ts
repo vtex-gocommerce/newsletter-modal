@@ -12,9 +12,9 @@ const setStoreConfig = async (data, ctx) => {
 
 export const resolvers = {
   Query: {
-    getConfig: (_, data, ctx) => getStoreConfig(ctx),
+    getNewsletterModalConfig: (_, data, ctx) => getStoreConfig(ctx),
   },
   Mutation: {
-    setConfig: (_, data, ctx) => setStoreConfig(data, ctx),
+    setNewsletterModalConfig: (_, data, ctx) => setStoreConfig(data, ctx),
   },
 }

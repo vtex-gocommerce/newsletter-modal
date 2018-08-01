@@ -1,0 +1,10 @@
+mutation SetNewsletterModalConfig($config: NewsletterModalConfigInput!) @context(scope: "private") {
+  setNewsletterModalConfig(config: $config) {
+    modalTitle
+    modalDescription
+    modalTextSuccess
+    modalEnabled
+    modalShowRule
+    modalShowWhen
+  }
+}
