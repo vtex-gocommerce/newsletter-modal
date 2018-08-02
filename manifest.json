@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "gocommerce.admin": "0.x",
-    "gocommerce.styleguide": "0.x"
+    "gocommerce.styleguide": "0.x",
+    "gocommerce.gc-utils": "0.x"
   },
   "policies": [
     {
