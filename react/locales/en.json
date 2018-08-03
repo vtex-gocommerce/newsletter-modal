@@ -3,7 +3,10 @@
   "newsletter-modal.admin.settings.page-title": "Settings - Newsletter",
   "newsletter-modal.admin.newsletter": "Newsletter",
   "newsletter-modal.admin.settings": "Settings",
-  "newsletter-modal.admin.general": "General",
-  "newsletter-modal.admin.popup": "Pop-up",
-  "newsletter-modal.admin.apps": "Apps"
+  "newsletter-modal.admin.settings.general-title": "General",
+  "newsletter-modal.admin.settings.popup-title": "Pop-up",
+  "newsletter-modal.admin.settings.apps-title": "Apps",
+  "newsletter-modal.admin.settings.input-title": "Title",
+  "newsletter-modal.admin.settings.input-text": "Text",
+  "newsletter-modal.admin.settings.input-success-text": "Success text"
 }

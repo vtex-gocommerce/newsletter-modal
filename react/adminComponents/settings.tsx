@@ -3,7 +3,7 @@ import { Query, Mutation } from 'react-apollo'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { Helmet } from 'render'
 import { WithNavigate } from 'gocommerce.gc-utils'
-import { Container, Input, Toggle, Button } from 'gocommerce.styleguide'
+import { Container, Input, Select, Toggle, RadioButton, Button } from 'gocommerce.styleguide'
 import PageHeader from './components/pageHeader'
 import GetNewsletterModalConfig from './../graphql/GetNewsletterModalConfig.gql'
 import SetNewsletterModalConfig from './../graphql/SetNewsletterModalConfig.gql'
@@ -49,9 +49,14 @@ class NewsletterConfig extends React.Component<NewsletterConfigProps, {}> {
       { title: <FormattedMessage id="newsletter-modal.admin.settings" /> }
     ]
     const tabsConfig = [
-      { label: <FormattedMessage id="newsletter-modal.admin.general" />, id: 'general' },
-      { label: <FormattedMessage id="newsletter-modal.admin.popup" />, id: 'popup' },
-      { label: <FormattedMessage id="newsletter-modal.admin.apps" />, id: 'apps' }
+      { label: <FormattedMessage id="newsletter-modal.admin.settings.general-title" />, id: 'general' },
+      { label: <FormattedMessage id="newsletter-modal.admin.settings.popup-title" />, id: 'popup' },
+      { label: <FormattedMessage id="newsletter-modal.admin.settings.apps-title" />, id: 'apps' }
+    ]
+    const activatesSeconds = [
+      { label: '1', value: '1' },
+      { label: '5', value: '5' },
+      { label: '10', value: '10' }
     ]
     return (
       <div className="">
@@ -88,41 +93,45 @@ class NewsletterConfig extends React.Component<NewsletterConfigProps, {}> {
                   return (
                     <form onSubmit={(e) => this.handleSave(e, setNewsletterModalConfig)}>
                       <Container isPlaceholderActive={queryLoading}>
-                        <span className="db g-mb4 g-f4 c-on-base">{this.props.intl.formatMessage({ id: 'newsletter-modal.admin.general' })}</span>
+                        <span className="db g-mb4 g-f4 c-on-base">{this.props.intl.formatMessage({ id: 'newsletter-modal.admin.settings.general-title' })}</span>
                         <div className="mb4">
-                          <Input label="Label of input" className="w-100" />
+                          <Input label={this.props.intl.formatMessage({ id: 'newsletter-modal.admin.settings.input-title' })} className="w-100" />
                         </div>
                         <div className="mb4">
-                          <Input label="Label of input" className="w-100" />
+                          <Input label={this.props.intl.formatMessage({ id: 'newsletter-modal.admin.settings.input-text' })} className="w-100" />
                         </div>
                         <div className="mb5">
-                          <Input label="Label of input" className="w-100" />
-                        </div>
-                        <div className="mt2">
-                          <div className="dib">
-                            <label className="flex items-center">
-                              <Toggle value="isHuman" className="dib mr2" />
-                              Label
-                            </label>
-                          </div>
+                          <Input label={this.props.intl.formatMessage({ id: 'newsletter-modal.admin.settings.input-success-text' })} className="w-100" />
                         </div>
                       </Container>
                       <Container isPlaceholderActive={queryLoading}>
-                        <span className="db g-mb4 g-f4 c-on-base">{this.props.intl.formatMessage({ id: 'newsletter-modal.admin.general' })}</span>
-                        <div className="mb4">
-                          <Input label="Label of input" className="w-100" />
-                        </div>
-                        <div className="mb4">
-                          <Input label="Label of input" className="w-100" />
-                        </div>
-                        <div className="mb5">
-                          <Input label="Label of input" className="w-100" />
-                        </div>
-                        <div className="mt2">
+                        <span className="db g-mb4 g-f4 c-on-base">{this.props.intl.formatMessage({ id: 'newsletter-modal.admin.settings.popup-title' })}</span>
+                        <div className="mt3">
                           <div className="dib">
                             <label className="flex items-center">
                               <Toggle value="isHuman" className="dib mr2" />
-                              Label
+                              <span className="ml3 g-f2 serious-black">{this.props.intl.formatMessage({ id: 'newsletter-modal.admin.settings.popup-active' })}</span>
+                            </label>
+                          </div>
+                        </div>
+                        <hr className="w-auto g-nh8 g-mv6 bw0 bg-base-3 c-on-base-3" style={{height: 1}} />
+                        <span className="db g-mb4 g-f3 c-on-base">{this.props.intl.formatMessage({ id: 'newsletter-modal.admin.settings.activates-title' })}</span>
+                        <div className="mt3 flex flex-column">
+                          <div className="dib mb4">
+                            <div className="flex items-center">
+                              <RadioButton id="settings" name="settings" value="visible" onClick={(event)=>console.log(`Value -> ${event.target.value}`)} />
+                              <label className="ml3">
+                                <Select list={activatesSeconds} required className="g-w12" />
+                              </label>
+                              <label htmlFor="settings">
+                                <span className="ml3 g-f2 serious-black">{this.props.intl.formatMessage({ id: 'newsletter-modal.admin.settings.popup-active' })}</span>
+                              </label>
+                            </div>
+                          </div>
+                          <div className="dib">
+                            <label className="flex items-center">
+                              <RadioButton name="settings" value="visible" onClick={(event)=>console.log(`Value -> ${event.target.value}`)} />
+                              <span className="ml3 g-f2 serious-black">{this.props.intl.formatMessage({ id: 'newsletter-modal.admin.settings.popup-active' })}</span>
                             </label>
                           </div>
                         </div>
