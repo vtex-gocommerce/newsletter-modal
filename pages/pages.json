@@ -21,6 +21,9 @@
         "page": "admin/newsletter-modal/settings",
         "title": "admin.container.sidebar.newsletter"
       }
+    },
+    "store/footer/store-footer/newsletter": {
+      "component": "storeFooter"
     }
   }
 }
