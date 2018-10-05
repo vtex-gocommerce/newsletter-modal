@@ -19,7 +19,8 @@
       "component": "gocommerce.admin/SideBarItem",
       "props": {
         "page": "admin/newsletter-modal/settings",
-        "title": "admin.container.sidebar.newsletter"
+        "title": "admin.container.sidebar.newsletter",
+        "disabled": true
       }
     },
     "store/footer/store-footer/newsletter": {
