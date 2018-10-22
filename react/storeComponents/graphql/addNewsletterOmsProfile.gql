@@ -1,0 +1,9 @@
+mutation addNewsletterOmsProfile($data: NewsletterProfileInput) @context(scope: "private") {
+  addNewsletterOmsProfile(data: $data) {
+    userErrors {
+      message
+      code
+      path
+    }
+  }
+}

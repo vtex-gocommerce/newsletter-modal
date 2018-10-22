@@ -1,5 +1,4 @@
 type Query {
-  # getNewsletterModalConfig: NewsletterModalConfig
   getNewsletterList(
     interval: CollectionIntervalInput
     sort: CollectionSortInput
@@ -10,4 +9,5 @@ type Query {
 
 type Mutation {
   unsubscribe(ids: [String]): UnsubscribeResponse!
+  addNewsletterOmsProfile(data: NewsletterProfileInput): addNewsletterOmsProfilePayload
 }

@@ -28,7 +28,7 @@
         "title": "admin.container.sidebar.newsletter"
       }
     },
-    "store/footer/store-footer/newsletter": {
+    "store/header/telemarketing": {
       "component": "storeFooter"
     }
   }
