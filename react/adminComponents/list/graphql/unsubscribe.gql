@@ -1,0 +1,5 @@
+mutation unsubscribe($ids: [String]) {
+  unsubscribe(ids: $ids) {
+    status
+  }
+}

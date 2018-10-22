@@ -27,6 +27,19 @@
     },
     {
       "name": "update-app-settings"
+    },
+
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "api.gocommerce.com"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "splunk-heavyforwarder-public.vtex.com"
+      }
     }
   ]
 }

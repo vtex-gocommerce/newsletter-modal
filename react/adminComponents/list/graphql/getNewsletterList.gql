@@ -1,0 +1,17 @@
+query getNewsletterList(
+  $interval: CollectionIntervalInput
+  $sort: CollectionSortInput
+  $search: String
+  $filters: [CollectionFilterInput]
+) {
+  getNewsletterList(interval: $interval, sort: $sort, search: $search, filters: $filters) {
+    totalNodes
+    nodes {
+      email
+      createdIn
+      firstName
+      lastName
+      id
+    }
+  }
+}

@@ -6,6 +6,9 @@
     },
     "admin/newsletter-modal/settings": {
       "path": "/admin/marketing/newsletter-modal/settings"
+    },
+    "admin/newsletter-modal/list": {
+      "path": "/admin/marketing/newsletter-modal/list"
     }
   },
   "extensions": {
@@ -15,12 +18,14 @@
     "admin/newsletter-modal/settings": {
       "component": "adminSettings"
     },
+    "admin/newsletter-modal/list": {
+      "component": "adminList"
+    },
     "admin/admin.container.sidebar.marketing/newsletter-modal": {
       "component": "gocommerce.admin/SideBarItem",
       "props": {
-        "page": "admin/newsletter-modal/settings",
-        "title": "admin.container.sidebar.newsletter",
-        "disabled": true
+        "page": "admin/newsletter-modal/list",
+        "title": "admin.container.sidebar.newsletter"
       }
     },
     "store/footer/store-footer/newsletter": {

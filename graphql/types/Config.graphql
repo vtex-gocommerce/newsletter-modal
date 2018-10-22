@@ -1,3 +1,29 @@
+type CollectionCustomers {
+  totalNodes: Int
+  nodes: [Customer]
+}
+
+type Customer {
+  id: String
+  email: String
+  userId: String
+  firstName: String
+  lastName: String
+  isCorporate: Boolean
+  createdIn: String
+  lastInteractionIn: String
+  updatedIn: String
+  homePhone: String
+  businessPhone: String
+  isNewsletterOptIn: Boolean
+  document: String
+  documentType: String
+  tradeName: String
+  corporateName: String
+  corporateDocument: String
+  stateRegistration: String
+}
+
 type NewsletterModalConfig {
   modalTitle: String
   modalDescription: String
@@ -7,6 +33,10 @@ type NewsletterModalConfig {
   modalShowWhen: String
 }
 
+type UnsubscribeResponse {
+  status: String
+}
+
 input NewsletterModalConfigInput {
   modalTitle: String
   modalDescription: String
@@ -14,4 +44,29 @@ input NewsletterModalConfigInput {
   modalEnabled: Boolean
   modalShowRule: String
   modalShowWhen: String
+}
+
+input CollectionIntervalInput {
+  init: Int
+  end: Int
+}
+
+input CollectionSortInput {
+  field: String!
+  direction: CollectionSortDirection!
+}
+
+input CollectionFilterInput {
+  field: String!
+  relation: String!
+  values: [String]!
+}
+
+enum CollectionSortDirection {
+  DESC
+  ASC
+}
+
+input UnsubscribeInput {
+  id: String
 }

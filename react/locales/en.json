@@ -8,5 +8,11 @@
   "newsletter-modal.admin.settings.apps-title": "Apps",
   "newsletter-modal.admin.settings.input-title": "Title",
   "newsletter-modal.admin.settings.input-text": "Text",
-  "newsletter-modal.admin.settings.input-success-text": "Success text"
+  "newsletter-modal.admin.settings.input-success-text": "Success text",
+  "newsletter-modal.admin.marketing": "Marketing",
+  "newsletter-modal.admin.all-subscribers": "All subscribers",
+  "newsletter-modal.admin.modal-unsubscribe-yes": "Yes",
+  "newsletter-modal.admin.modal-unsubscribe-no": "Cancel",
+  "newsletter-modal.admin.modal-unsubscribe-description": "Description",
+  "newsletter-modal.admin.modal-unsubscribe-title": "Title"
 }

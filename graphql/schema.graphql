@@ -1,7 +1,13 @@
 type Query {
-  getNewsletterModalConfig: NewsletterModalConfig
+  # getNewsletterModalConfig: NewsletterModalConfig
+  getNewsletterList(
+    interval: CollectionIntervalInput
+    sort: CollectionSortInput
+    search: String
+    filters: [CollectionFilterInput]
+  ): CollectionCustomers @cacheControl(scope: PRIVATE)
 }
 
 type Mutation {
-  setNewsletterModalConfig(config: NewsletterModalConfigInput): NewsletterModalConfig!
+  unsubscribe(ids: [String]): UnsubscribeResponse!
 }
