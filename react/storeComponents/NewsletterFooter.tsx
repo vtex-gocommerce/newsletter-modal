@@ -1,12 +1,14 @@
 import * as React from 'react'
 import { graphql, compose } from 'react-apollo'
 import Cookies from 'universal-cookie'
+import { NoSSR } from 'render'
 import { Modal, Input, Button } from 'vtex.styleguide'
 import addNewsletterOmsProfile from './graphql/addNewsletterOmsProfile.gql'
 
 const cookies = new Cookies()
 
 interface NewsletterModalProps {
+  active: boolean
   boxTitle: string
   boxIntro: string
   boxComplete: string
@@ -27,12 +29,21 @@ class NewsletterModal extends React.Component<NewsletterModalProps, {}> {
     isSuccess: false
   }
   componentDidMount() {
-    console.log('MMMMMMMMM', cookies.get('VtexCustomWorkspace'))
-    this.setState({
-      isModalOpen: true
-    })
+    if(this.props.active && !cookies.get('newsletterModalClosed')) {
+      this.setState({
+        isModalOpen: true
+      })
+    }
+  }
+  componentDidUpdate(prevProps) {
+    if(!prevProps.active && this.props.active && !this.state.isModalOpen) {
+      this.setState({
+        isModalOpen: true
+      })
+    }
   }
   onClose = () => {
+    cookies.set('newsletterModalClosed', true, { path: '/' })
     this.setState({
       isModalOpen: false
     })
@@ -74,28 +85,30 @@ class NewsletterModal extends React.Component<NewsletterModalProps, {}> {
     const { isModalOpen, emailValue, isSending, isSuccess } = this.state
     const { active, boxTitle, boxIntro, boxComplete } = this.props
     return active && (
-      <Modal centered isOpen={isModalOpen} onClose={this.onClose}>
-        <div className="newsletterModal-container">
-          <div className="newsletterModal-title">{boxTitle}</div>
-          {isSuccess ? (
-            <div className="newsletterModal-success">
-              <p>{boxComplete}</p>
-            </div>
-          ) : (
-            <div className="newsletterModal-intro">
-              <p>{boxIntro}</p>
-              <form onSubmit={this.handleSubmit} className="flex">
-                <Input type="email" placeholder="E-mail" value={emailValue} required onChange={e => this.setState({ emailValue: e.target.value })} />
-                <div className="ml3">
-                  <Button type="submit" variation="primary" size="small" isLoading={isSending}>
-                    Send
-                  </Button>
-                </div>
-              </form>
-            </div>
-          )}
-        </div>
-      </Modal>
+      <NoSSR>
+        <Modal centered isOpen={isModalOpen} onClose={this.onClose}>
+          <div className="newsletterModal-container">
+            <div className="newsletterModal-title">{boxTitle}</div>
+            {isSuccess ? (
+              <div className="newsletterModal-success">
+                <p>{boxComplete}</p>
+              </div>
+            ) : (
+              <div className="newsletterModal-intro">
+                <p>{boxIntro}</p>
+                <form onSubmit={this.handleSubmit} className="flex">
+                  <Input type="email" placeholder="E-mail" value={emailValue} required onChange={e => this.setState({ emailValue: e.target.value })} />
+                  <div className="ml3">
+                    <Button type="submit" variation="primary" size="small" isLoading={isSending}>
+                      Send
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            )}
+          </div>
+        </Modal>
+      </NoSSR>
     )
   }
 }
