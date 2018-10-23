@@ -12,15 +12,24 @@ interface NewsletterModalProps {
   boxTitle: string
   boxIntro: string
   boxComplete: string
+  boxSend: string
   addNewsletterOmsProfile: Function
 }
 
-class NewsletterModal extends React.Component<NewsletterModalProps, {}> {
+interface NewsletterModalState {
+  isModalOpen: boolean
+  emailValue: string
+  isSending: boolean
+  isSuccess: boolean
+}
+
+class NewsletterModal extends React.Component<NewsletterModalProps, NewsletterModalState> {
   static defaultProps = {
     active: false,
     boxTitle: 'Newsletter',
     boxIntro: 'Se inscreva em nossa newsletter e receba promoções',
     boxComplete: 'Cadastro realizado com sucesso!',
+    boxSend: 'Enviar'
   }
   state = {
     isModalOpen: false,
@@ -37,6 +46,7 @@ class NewsletterModal extends React.Component<NewsletterModalProps, {}> {
   }
   componentDidUpdate(prevProps) {
     if(!prevProps.active && this.props.active && !this.state.isModalOpen) {
+      cookies.remove('newsletterModalClosed', { path: '/' })
       this.setState({
         isModalOpen: true
       })
@@ -83,7 +93,7 @@ class NewsletterModal extends React.Component<NewsletterModalProps, {}> {
   }
   render() {
     const { isModalOpen, emailValue, isSending, isSuccess } = this.state
-    const { active, boxTitle, boxIntro, boxComplete } = this.props
+    const { active, boxTitle, boxIntro, boxComplete, boxSend } = this.props
     return active && (
       <NoSSR>
         <Modal centered isOpen={isModalOpen} onClose={this.onClose}>
@@ -100,7 +110,7 @@ class NewsletterModal extends React.Component<NewsletterModalProps, {}> {
                   <Input type="email" placeholder="E-mail" value={emailValue} required onChange={e => this.setState({ emailValue: e.target.value })} />
                   <div className="ml3">
                     <Button type="submit" variation="primary" size="small" isLoading={isSending}>
-                      Send
+                      {boxSend}
                     </Button>
                   </div>
                 </form>
@@ -145,6 +155,12 @@ NewsletterModalWithIntl.schema = {
       type: 'string',
       title: 'editor.newsletterModal.configs.complete',
       default: NewsletterModal.defaultProps.boxComplete,
+      isLayout: true,
+    },
+    boxSend: {
+      type: 'string',
+      title: 'editor.newsletterModal.configs.send',
+      default: NewsletterModal.defaultProps.boxSend,
       isLayout: true,
     },
   },

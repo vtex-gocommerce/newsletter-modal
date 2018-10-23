@@ -32,6 +32,9 @@ declare namespace Render {
   export class RenderContextConsumer extends React.Component<any, any> {
     render()
   }
+  export class NoSSR extends React.Component<any, any> {
+    render()
+  }
 }
 
 declare module 'render' {
