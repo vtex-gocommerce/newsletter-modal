@@ -8,12 +8,6 @@
   "newsletter-modal.admin.selected": "selected",
   "newsletter-modal.admin.name": "Name",
   "newsletter-modal.admin.email": "Email",
-  "newsletter-modal.admin.settings.general-title": "General",
-  "newsletter-modal.admin.settings.popup-title": "Pop-up",
-  "newsletter-modal.admin.settings.apps-title": "Apps",
-  "newsletter-modal.admin.settings.input-title": "Title",
-  "newsletter-modal.admin.settings.input-text": "Text",
-  "newsletter-modal.admin.settings.input-success-text": "Success text",
   "newsletter-modal.admin.marketing": "Marketing",
   "newsletter-modal.admin.all-subscribers": "All subscribers",
   "newsletter-modal.admin.modal-unsubscribe-yes": "Yes",
@@ -21,5 +15,13 @@
   "newsletter-modal.admin.modal-unsubscribe-description": "newsletter-modal.admin.modal-unsubscribe-description",
   "newsletter-modal.admin.modal-unsubscribe-title": "newsletter-modal.admin.modal-unsubscribe-title",
   "newsletter-modal.admin.general-success-message": "newsletter-modal.admin.general-success-message",
-  "newsletter-modal.admin.general-error-message": "newsletter-modal.admin.general-error-message"
+  "newsletter-modal.admin.general-error-message": "newsletter-modal.admin.general-error-message",
+
+  "editor.newsletterModal.configs.componentTitle": "Newsletter Popup",
+  "editor.newsletterModal.configs.componentDescription": "Popup for newsletter subscription",
+  "editor.newsletterModal.configs.active": "Active",
+  "editor.newsletterModal.configs.title": "Title",
+  "editor.newsletterModal.configs.intro": "Introduction text",
+  "editor.newsletterModal.configs.complete": "Success text",
+  "editor.newsletterModal.configs.send": "Button text"
 }

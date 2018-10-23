@@ -19,7 +19,9 @@
   "dependencies": {
     "gocommerce.admin": "0.x",
     "gocommerce.styleguide": "0.x",
-    "gocommerce.gc-utils": "0.x"
+    "gocommerce.gc-utils": "0.x",
+    "vtex.styleguide": "7.x",
+    "vtex.store-graphql": "2.x"
   },
   "policies": [
     {
@@ -28,7 +30,6 @@
     {
       "name": "update-app-settings"
     },
-
     {
       "name": "outbound-access",
       "attrs": {

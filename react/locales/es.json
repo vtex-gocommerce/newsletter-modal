@@ -2,5 +2,13 @@
   "admin.container.sidebar.newsletter": "Newsletter",
   "newsletter-modal.admin.settings.page-title": "Settings - Newsletter",
   "newsletter-modal.admin.newsletter": "Newsletter",
-  "newsletter-modal.admin.settings": "Settings"
+  "newsletter-modal.admin.settings": "Settings",
+
+  "editor.newsletterModal.configs.componentTitle": "Newsletter Popup",
+  "editor.newsletterModal.configs.componentDescription": "Popup for newsletter subscription",
+  "editor.newsletterModal.configs.active": "Active",
+  "editor.newsletterModal.configs.title": "Title",
+  "editor.newsletterModal.configs.intro": "Introduction text",
+  "editor.newsletterModal.configs.complete": "Success text",
+  "editor.newsletterModal.configs.send": "Button text"
 }

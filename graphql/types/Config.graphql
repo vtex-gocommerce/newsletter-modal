@@ -24,26 +24,8 @@ type Customer {
   stateRegistration: String
 }
 
-type NewsletterModalConfig {
-  modalTitle: String
-  modalDescription: String
-  modalTextSuccess: String
-  modalEnabled: Boolean
-  modalShowRule: String
-  modalShowWhen: String
-}
-
 type UnsubscribeResponse {
   status: String
-}
-
-input NewsletterModalConfigInput {
-  modalTitle: String
-  modalDescription: String
-  modalTextSuccess: String
-  modalEnabled: Boolean
-  modalShowRule: String
-  modalShowWhen: String
 }
 
 input CollectionIntervalInput {
@@ -69,4 +51,26 @@ enum CollectionSortDirection {
 
 input UnsubscribeInput {
   id: String
+}
+
+input NewsletterProfileInput {
+  email: String
+  firstName: String
+  lastName: String
+  isNewsletterOptIn: Boolean
+  createdIn: String
+  updatedIn: String
+}
+
+type addNewsletterOmsProfilePayload {
+  userErrors: [UserError]
+}
+
+type UserError {
+  message: String!
+  # The i18n translation code
+  code: String!
+  # Path to input field (or other target) which caused the error.
+  # i.e.: ['accounts','0','name'] indicates an error at `accounts[0].name`
+  path: [String!]
 }
