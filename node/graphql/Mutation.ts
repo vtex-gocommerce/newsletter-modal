@@ -3,19 +3,15 @@ import axios from 'axios'
 
 export const unsubscribe = async (param, makeApiCall) => {
   const promisesList = param.ids.map(async id => {
-    const url = `/data/CL/documents/${id}?_fields=_all`
-    const data = { isNewsletterOptIn: true }
-
-    const teste = await makeApiCall(url, 'patch', data)
-    // console.log('------teste-------', teste)
+    const url = `/data/CL/documents/${id}`
+    const data = { isNewsletterOptIn: false }
 
     return makeApiCall(url, 'patch', data)
   })
 
   const allResponses = await axios.all(promisesList)
-  // console.log('------allResponses-------', allResponses)
 
-  // allResponses.map(resp => console.log('------resp-------', resp.error.data))
+  const responseStatus = allResponses.reduce((prev, current) => (current.status !== 204 ? 400 : prev), 204)
 
-  return { status: 200 }
+  return { status: responseStatus }
 }

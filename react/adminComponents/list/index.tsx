@@ -54,12 +54,13 @@ class indexList extends React.PureComponent<indexListProps, {}> {
                   {({ data, loading, fetchMore }) => {
                     return (
                       <NewsletterList
-                        pageUrl={currentPath.substr(1)}
+                        pageUrl="admin/newsletter-modal/list"
                         refetchNewsletterList={fetchMore}
                         newsletterList={data.getNewsletterList}
                         isLoadingData={loading}
                         query={this.props.query}
                         unsubscribe={unsubscribe}
+                        isLoadingUnsubscribe={dataUnsubcribe.loading}
                       />
                     )
                   }}

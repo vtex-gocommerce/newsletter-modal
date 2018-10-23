@@ -1,20 +1,12 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
-import { Link } from 'render'
 import { FormatData } from 'gocommerce.gc-utils'
 
 export const tableConfig = {
-  options: {
-    cellWrapperProps: item => ({
-      page: 'admin/oms/customer',
-      params: { customer_id: item.userId }
-    })
-  },
   columns: [
     {
-      cellWrapper: Link,
       sort: true,
-      label: <FormattedMessage id="admin.oms.subscription" />,
+      label: <FormattedMessage id="newsletter-modal.admin.subscription" />,
       id: 'updatedIn',
       size: 15,
       row: item => {
@@ -22,14 +14,14 @@ export const tableConfig = {
       }
     },
     {
-      label: <FormattedMessage id="admin.oms.name" />,
+      label: <FormattedMessage id="newsletter-modal.admin.name" />,
       id: 'name',
       row: item => {
         return `${item.firstName} ${item.lastName}`
       }
     },
     {
-      label: <FormattedMessage id="admin.oms.email" />,
+      label: <FormattedMessage id="newsletter-modal.admin.email" />,
       id: 'email',
       row: item => {
         return item.email
