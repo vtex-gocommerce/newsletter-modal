@@ -1,20 +1,14 @@
-import { Apps } from '@vtex/api'
+import { loggerMiddleware } from '@gocommerce/utils'
+import { getNewsletterList } from './Query'
+import { unsubscribe } from './Mutation'
 
-const getStoreConfig = async ctx => {
-  const client = new Apps(ctx.vtex)
-  return await client.getAppSettings('gocommerce.newsletter-modal')
-}
+const tokenSplunk = 'dd433cc0-9106-4b0d-883a-377d57e8eb1a'
 
-const setStoreConfig = async (data, ctx) => {
-  const client = new Apps(ctx.vtex)
-  return await client.saveAppSettings('gocommerce.newsletter-modal', data.config)
-}
-
-export const resolvers = {
+export const resolvers = loggerMiddleware(tokenSplunk, {
   Query: {
-    getNewsletterModalConfig: (_, data, ctx) => getStoreConfig(ctx),
+    getNewsletterList: async (_, param, ctx, info, makeApiCall) => await getNewsletterList(param, makeApiCall)
   },
   Mutation: {
-    setNewsletterModalConfig: (_, data, ctx) => setStoreConfig(data, ctx),
-  },
-}
+    unsubscribe: async (_, param, ctx, info, makeApiCall) => await unsubscribe(param, makeApiCall)
+  }
+})
