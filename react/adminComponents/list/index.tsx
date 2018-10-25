@@ -23,6 +23,8 @@ const defaultSort = { field: 'updatedIn', direction: 'DESC' }
 
 class indexList extends React.PureComponent<indexListProps, {}> {
   render() {
+    console.log('------query-------', this.props.query)
+
     return (
       <RenderContextConsumer>
         {context => {
@@ -54,7 +56,6 @@ class indexList extends React.PureComponent<indexListProps, {}> {
                   {({ data, loading, fetchMore }) => {
                     return (
                       <NewsletterList
-                        pageUrl="admin/newsletter-modal/list"
                         refetchNewsletterList={fetchMore}
                         newsletterList={data.getNewsletterList}
                         isLoadingData={loading}
