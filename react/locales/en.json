@@ -16,6 +16,7 @@
   "newsletter-modal.admin.modal-unsubscribe-title": "newsletter-modal.admin.modal-unsubscribe-title",
   "newsletter-modal.admin.general-success-message": "newsletter-modal.admin.general-success-message",
   "newsletter-modal.admin.general-error-message": "newsletter-modal.admin.general-error-message",
+  "newsletter-modal.admin.search-by": "Search by name or email",
 
   "editor.newsletterModal.configs.componentTitle": "Newsletter Popup",
   "editor.newsletterModal.configs.componentDescription": "Popup for newsletter subscription",
