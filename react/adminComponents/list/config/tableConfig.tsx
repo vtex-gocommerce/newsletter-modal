@@ -14,13 +14,6 @@ export const tableConfig = {
       }
     },
     {
-      label: <FormattedMessage id="newsletter-modal.admin.name" />,
-      id: 'name',
-      row: item => {
-        return `${item.firstName} ${item.lastName}`
-      }
-    },
-    {
       label: <FormattedMessage id="newsletter-modal.admin.email" />,
       id: 'email',
       row: item => {
