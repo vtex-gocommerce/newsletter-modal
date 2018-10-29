@@ -69,7 +69,7 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
     const totalSelectedList = this.state.seletedList.length
     const isEmptySelectedList = totalSelectedList === 0
     return (
-      <>
+      <div className="inline-flex items-center">
         {!isEmptySelectedList && (
           <span className="g-mr4">
             {totalSelectedList} <FormattedMessage id="newsletter-modal.admin.selected" />
@@ -82,7 +82,7 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
           <IconDanger className="g-mr2" />
           <FormattedMessage id="newsletter-modal.admin.unsubscribe" />
         </span>
-      </>
+      </div>
     )
   }
 
