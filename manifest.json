@@ -1,27 +1,29 @@
 {
   "name": "newsletter-modal",
   "vendor": "gocommerce",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "title": "Newsletter Modal",
   "description": "",
   "mustUpdateAt": "2018-04-05",
   "categories": [],
-  "registries": ["smartcheckout", "gocommerce"],
+  "registries": [
+    "smartcheckout",
+    "gocommerce"
+  ],
   "settingsSchema": {},
-  "dependencies": {},
-  "credentialType": "absolute",
-  "builders": {
-    "react": "2.x",
-    "pages": "0.x",
-    "node": "3.x",
-    "graphql": "1.x"
-  },
   "dependencies": {
     "gocommerce.admin": "0.x",
     "gocommerce.styleguide": "0.x",
     "gocommerce.gc-utils": "0.x",
     "vtex.styleguide": "7.x",
     "vtex.store-graphql": "2.x"
+  },
+  "credentialType": "absolute",
+  "builders": {
+    "react": "2.x",
+    "pages": "0.x",
+    "node": "3.x",
+    "graphql": "1.x"
   },
   "policies": [
     {
