@@ -12,7 +12,7 @@
   "newsletter-modal.admin.all-subscribers": "Todos inscritos na newsletter",
   "newsletter-modal.admin.modal-unsubscribe-yes": "Sim",
   "newsletter-modal.admin.modal-unsubscribe-no": "Cancelar",
-  "newsletter-modal.admin.modal-unsubscribe-description": "",
+  "newsletter-modal.admin.modal-unsubscribe-description": "description",
   "newsletter-modal.admin.modal-unsubscribe-title": "Você tem certeza que deseja remover esses usuários da newsletter?",
   "newsletter-modal.admin.general-success-message": "Incrições canceladas com sucesso",
   "newsletter-modal.admin.general-error-message": "newsletter-modal.admin.general-error-message",

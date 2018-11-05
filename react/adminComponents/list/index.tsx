@@ -23,8 +23,6 @@ const defaultSort = { field: 'updatedIn', direction: 'DESC' }
 
 class indexList extends React.PureComponent<indexListProps, {}> {
   render() {
-    console.log('------query-------', this.props.query)
-
     return (
       <RenderContextConsumer>
         {context => {
