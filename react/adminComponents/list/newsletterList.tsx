@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { FormattedMessage, injectIntl } from 'react-intl'
-import { IconDanger, ListTableTemplate } from 'gocommerce.styleguide'
+import { IconBan, ListTableTemplate } from 'gocommerce.styleguide'
 
 import ModalUnsubscribe from './components/modalUnsubscribe'
 import { Notify } from 'gocommerce.styleguide'
@@ -79,7 +79,7 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
           onClick={isEmptySelectedList ? null : this.handleToggleModalUnsubscribeOpen}
           className={isEmptySelectedList ? 'c-on-base-2' : 'pointer hover-c-primary inline-flex items-center'}
         >
-          <IconDanger className="g-mr2" />
+          <IconBan className="g-mr2" />
           <FormattedMessage id="newsletter-modal.admin.unsubscribe" />
         </span>
       </div>

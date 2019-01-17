@@ -34,7 +34,7 @@ class ModalUnsubscribe extends React.Component<ModalUnsubscribeProps, ModalUnsub
 
               <Button size="large" style="danger" className="pointer" onClick={action} isDisabled={false}>
                 {this.props.intl.formatMessage({ id: 'newsletter-modal.admin.modal-unsubscribe-yes' })}{' '}
-                {isActionLoading ? <IconSpinner pulse /> : null}
+                {isActionLoading ? <IconSpinner animate /> : null}
               </Button>
             </div>
           </div>
