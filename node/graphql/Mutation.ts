@@ -9,7 +9,7 @@ export const unsubscribe = async (param, makeApiCall) => {
     return makeApiCall(url, 'patch', data)
   })
 
-  const allResponses = await axios.all(promisesList)
+  const allResponses = (await axios.all(promisesList) as {status: number}[])
 
   const responseStatus = allResponses.reduce((prev, current) => (current.status !== 204 ? 400 : prev), 204)
 

@@ -1,4 +1,4 @@
-import { ConfigObjectToQueryString, Sort } from './types'
+import { ConfigObjectToQueryString, CollectionIntervalInput, CollectionSortInput, CollectionFilterInput } from './types'
 
 export function objectToQueryString(source: object, config: ConfigObjectToQueryString[]): string {
   const fields: string[] = config

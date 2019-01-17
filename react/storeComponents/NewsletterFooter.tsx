@@ -94,6 +94,7 @@ class NewsletterModal extends React.Component<NewsletterModalProps, NewsletterMo
   render() {
     const { isModalOpen, emailValue, isSending, isSuccess } = this.state
     const { active, boxTitle, boxIntro, boxComplete, boxSend } = this.props
+    console.log('HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH')
     return active && (
       <NoSSR>
         <Modal centered isOpen={isModalOpen} onClose={this.onClose}>

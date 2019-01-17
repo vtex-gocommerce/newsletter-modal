@@ -60,3 +60,32 @@ export interface Sort {
   field: string
   direction: 'ASC' | 'DESC'
 }
+
+export interface CollectionSortInput {
+  field: string
+  direction: string
+}
+
+export interface CollectionIntervalInput {
+  init: number
+  end: number
+}
+
+export interface CollectionFilterInput {
+  field: string
+  relation: CollectionFilterRelation
+  values: [string]
+}
+
+export type CollectionFilterRelation =
+  | 'CONTAINS'
+  | 'ENDS_WITH'
+  | 'EQUALS'
+  | 'GREATER_THAN'
+  | 'LESS_THAN'
+  | 'NOT_CONTAINS'
+  | 'NOT_EQUALS'
+  | 'STARTS_WITH'
+  | 'BETWEEN'
+  | 'IS_NULL'
+  | 'IS_NOT_NULL'

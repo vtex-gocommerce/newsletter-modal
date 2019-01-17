@@ -13,7 +13,7 @@ interface NewsletterListProps {
   isLoadingData: boolean
   refetchCustomersList: Function
   query: any
-  intl: Intl
+  intl?: any
   isLoadingUnsubscribe: boolean
   unsubscribe(options: any)
   navigate(options: any)

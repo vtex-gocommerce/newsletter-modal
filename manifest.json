@@ -23,7 +23,8 @@
     "react": "2.x",
     "pages": "0.x",
     "node": "3.x",
-    "graphql": "1.x"
+    "graphql": "1.x",
+    "messages": "0.x"
   },
   "policies": [
     {

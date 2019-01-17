@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { Form } from 'gocommerce.gc-utils'
 
-import { IconCheck, IconSpinner, Modal, Button, Input, Toggle } from 'gocommerce.styleguide'
+import { IconSpinner, Modal, Button } from 'gocommerce.styleguide'
 import { FormattedMessage } from 'react-intl'
 
 interface ModalUnsubscribeProps {
@@ -9,7 +8,7 @@ interface ModalUnsubscribeProps {
   isActionLoading: boolean
   close: Function
   action: Function
-  intl: Intl
+  intl?: any
 }
 
 interface ModalUnsubscribeState {}
