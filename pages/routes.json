@@ -1,0 +1,8 @@
+{
+  "admin.newsletter": {
+    "path": "/admin/marketing/newsletter"
+  },
+  "admin.newsletter.list": {
+    "path": "/admin/marketing/newsletter/list"
+  }
+}

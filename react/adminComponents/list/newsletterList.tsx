@@ -109,7 +109,7 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
         />
         <TemplatePage.Content>
           {({ globalNotifications }) => (
-            <ListTableTemplate pageUrl="admin/newsletter/list" query={query} navigate={navigate}>
+            <ListTableTemplate pageUrl="admin.newsletter.list" query={query} navigate={navigate}>
               <ListTableTemplate.Filter
                 isLoading={isLoadingData}
                 placeholder={this.props.intl.formatMessage({
