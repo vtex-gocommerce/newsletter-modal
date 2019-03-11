@@ -1,9 +1,9 @@
 type Query {
   getNewsletterList(
-    interval: CollectionIntervalInput
-    sort: CollectionSortInput
+    interval: CollectionIntervalInput2
+    sort: CollectionSortInput2
     search: String
-    filters: [CollectionFilterInput]
+    filters: [CollectionFilterInput2]
   ): CollectionCustomers @cacheControl(scope: PRIVATE)
 }
 

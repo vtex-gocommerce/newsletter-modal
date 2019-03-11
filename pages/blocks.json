@@ -1,7 +1,7 @@
 {
   "inject#newsletter": {
     "props": {
-      "page": "admin.newsletter.list",
+      "page": "admin.marketing.newsletter.list",
       "title": "admin.container.sidebar.newsletter"
     }
   }

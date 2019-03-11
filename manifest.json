@@ -9,7 +9,7 @@
   "registries": ["smartcheckout", "gocommerce"],
   "settingsSchema": {},
   "dependencies": {
-    "gocommerce.admin": "1.x",
+    "gocommerce.admin-marketing": "1.x",
     "gocommerce.styleguide": "2.x",
     "gocommerce.gc-utils": "2.x",
     "vtex.styleguide": "7.x",

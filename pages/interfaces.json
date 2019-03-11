@@ -1,11 +1,11 @@
 {
-  "admin.newsletter": {
+  "admin.marketing.newsletter": {
     "around": ["wrapper"]
   },
   "wrapper": {
     "component": "index"
   },
-  "admin.newsletter.list": {
+  "admin.marketing.newsletter.list": {
     "component": "adminList"
   }
 }
