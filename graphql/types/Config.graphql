@@ -28,23 +28,23 @@ type UnsubscribeResponse {
   status: String
 }
 
-input CollectionIntervalInput {
+input CollectionIntervalInput2 {
   init: Int
   end: Int
 }
 
-input CollectionSortInput {
+input CollectionSortInput2 {
   field: String!
-  direction: CollectionSortDirection!
+  direction: CollectionSortDirection2!
 }
 
-input CollectionFilterInput {
+input CollectionFilterInput2 {
   field: String!
   relation: String!
   values: [String]!
 }
 
-enum CollectionSortDirection {
+enum CollectionSortDirection2 {
   DESC
   ASC
 }

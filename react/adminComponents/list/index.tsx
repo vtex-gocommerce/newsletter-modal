@@ -1,6 +1,6 @@
 import * as React from 'react'
 import NewsletterList from './newsletterList'
-import { RenderContextConsumer } from 'render'
+import { RenderContextConsumer } from 'vtex.render-runtime'
 import { GcQuery, GcMutation } from 'gocommerce.gc-utils'
 
 import {

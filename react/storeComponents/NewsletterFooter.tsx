@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { graphql, compose } from 'react-apollo'
 import Cookies from 'universal-cookie'
-import { NoSSR } from 'render'
+import { NoSSR } from 'vtex.render-runtime'
 import { Modal, Input, Button } from 'vtex.styleguide'
 import addNewsletterOmsProfile from './graphql/addNewsletterOmsProfile.gql'
 
