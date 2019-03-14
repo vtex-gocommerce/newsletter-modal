@@ -1,7 +1,7 @@
 {
   "name": "newsletter-modal",
   "vendor": "gocommerce",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "title": "Newsletter Modal",
   "description": "",
   "mustUpdateAt": "2018-04-05",
@@ -9,6 +9,7 @@
   "registries": ["smartcheckout", "gocommerce"],
   "settingsSchema": {},
   "dependencies": {
+    "gocommerce.admin": "1.x",
     "gocommerce.admin-marketing": "1.x",
     "gocommerce.styleguide": "2.x",
     "gocommerce.gc-utils": "2.x",
