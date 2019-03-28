@@ -100,7 +100,7 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
     const isLoadingPage: boolean = !newsletterList
 
     return (
-      <TemplatePage>
+      <TemplatePage title={this.props.intl.formatMessage({ id: 'newsletter-modal.admin.settings.page-title' })}>
         <TemplatePage.Header
           breadcrumbConfig={breadcrumbConfig}
           tabsConfig={tabsConfigs}
