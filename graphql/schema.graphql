@@ -5,6 +5,7 @@ type Query {
     search: String
     filters: [CollectionFilterInput2]
   ): CollectionCustomers @cacheControl(scope: PRIVATE)
+  getAppData: AppData
 }
 
 type Mutation {

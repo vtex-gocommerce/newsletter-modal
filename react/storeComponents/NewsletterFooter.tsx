@@ -3,7 +3,9 @@ import { graphql, compose } from 'react-apollo'
 import Cookies from 'universal-cookie'
 import { NoSSR } from 'vtex.render-runtime'
 import { Modal, Input, Button } from 'vtex.styleguide'
+
 import addNewsletterOmsProfile from './graphql/addNewsletterOmsProfile.gql'
+import getAppData from './graphql/getAppData.gql'
 
 const cookies = new Cookies()
 
@@ -14,6 +16,7 @@ interface NewsletterModalProps {
   boxComplete: string
   boxSend: string
   addNewsletterOmsProfile: Function
+  app: any
 }
 
 interface NewsletterModalState {
@@ -23,7 +26,7 @@ interface NewsletterModalState {
   isSuccess: boolean
 }
 
-class NewsletterModal extends React.Component<NewsletterModalProps, NewsletterModalState> {
+class NewsletterModal extends React.PureComponent<NewsletterModalProps, NewsletterModalState> {
   static defaultProps = {
     active: false,
     boxTitle: 'Newsletter',
@@ -31,6 +34,8 @@ class NewsletterModal extends React.Component<NewsletterModalProps, NewsletterMo
     boxComplete: 'Cadastro realizado com sucesso!',
     boxSend: 'Enviar'
   }
+
+  installed = this.props.app.getAppData.installed
 
   state = {
     isModalOpen: false,
@@ -40,6 +45,7 @@ class NewsletterModal extends React.Component<NewsletterModalProps, NewsletterMo
   }
 
   componentDidMount() {
+    if (!this.installed) return false
     if(this.props.active && !cookies.get('newsletterModalClosed')) {
       this.setState({
         isModalOpen: true
@@ -48,6 +54,7 @@ class NewsletterModal extends React.Component<NewsletterModalProps, NewsletterMo
   }
 
   componentDidUpdate(prevProps) {
+    if (!this.installed) return false
     if(!prevProps.active && this.props.active && !this.state.isModalOpen) {
       cookies.remove('newsletterModalClosed', { path: '/' })
       this.setState({
@@ -99,11 +106,11 @@ class NewsletterModal extends React.Component<NewsletterModalProps, NewsletterMo
 
   render() {
     const { isModalOpen, emailValue, isSending, isSuccess } = this.state
-    const { active, boxTitle, boxIntro, boxComplete, boxSend } = this.props
+    const { active, boxTitle, boxIntro, boxComplete, boxSend, app } = this.props
 
-    console.log('--- newsletter modal render')
+    if (!this.installed || !active) return null
 
-    return active && (
+    return (
       <NoSSR>
         <Modal centered isOpen={isModalOpen} onClose={this.onClose}>
           <div className="newsletterModal-container">
@@ -118,7 +125,7 @@ class NewsletterModal extends React.Component<NewsletterModalProps, NewsletterMo
                 <form onSubmit={this.handleSubmit} className="flex">
                   <Input type="email" placeholder="E-mail" value={emailValue} required onChange={e => this.setState({ emailValue: e.target.value })} />
                   <div className="ml3">
-                    <Button type="submit" variation="primary" size="small" isLoading={isSending}>
+                    <Button type="submit" variation="primary" isLoading={isSending}>
                       {boxSend}
                     </Button>
                   </div>
@@ -134,8 +141,13 @@ class NewsletterModal extends React.Component<NewsletterModalProps, NewsletterMo
 
 const NewsletterModalWithIntl = compose(
   graphql(addNewsletterOmsProfile, {
-    name: 'addNewsletterOmsProfile'
-  })
+    name: 'addNewsletterOmsProfile',
+  }),
+  graphql(getAppData, {
+    props: ({ data }) => ({
+      app: data,
+    }),
+  }),
 )(NewsletterModal)
 
 NewsletterModalWithIntl.schema = {

@@ -1,0 +1,6 @@
+query getAppData {
+  getAppData {
+    id
+    installed
+  }
+}

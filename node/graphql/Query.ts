@@ -1,4 +1,5 @@
 import { biuldGraphQlError } from '@gocommerce/utils'
+import { Apps } from '@vtex/api'
 
 export const CollectionFilterRelationToMasterData = {
   EQUALS: (field, values) => `(${field}=${values.join('')})`,
@@ -38,5 +39,17 @@ export const getNewsletterList = async (param, makeApiCall) => {
   return {
     nodes: newsletterList.data,
     totalNodes: parseInt(newsletterList.headers['rest-content-range'].split('/')[1])
+  }
+}
+
+export const getAppData = async (ctx) => {
+  const appId = 'gocommerce.newsletter-modal'
+  const apps = new Apps(ctx.vtex)
+
+  const { version: installedVersion = null } = await apps.getApp(appId)
+
+  return {
+    id: appId,
+    installed: !!installedVersion,
   }
 }
