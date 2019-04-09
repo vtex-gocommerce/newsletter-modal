@@ -31,12 +31,14 @@ class NewsletterModal extends React.Component<NewsletterModalProps, NewsletterMo
     boxComplete: 'Cadastro realizado com sucesso!',
     boxSend: 'Enviar'
   }
+
   state = {
     isModalOpen: false,
     emailValue: '',
     isSending: false,
     isSuccess: false
   }
+
   componentDidMount() {
     if(this.props.active && !cookies.get('newsletterModalClosed')) {
       this.setState({
@@ -44,6 +46,7 @@ class NewsletterModal extends React.Component<NewsletterModalProps, NewsletterMo
       })
     }
   }
+
   componentDidUpdate(prevProps) {
     if(!prevProps.active && this.props.active && !this.state.isModalOpen) {
       cookies.remove('newsletterModalClosed', { path: '/' })
@@ -52,12 +55,14 @@ class NewsletterModal extends React.Component<NewsletterModalProps, NewsletterMo
       })
     }
   }
+
   onClose = () => {
     cookies.set('newsletterModalClosed', true, { path: '/' })
     this.setState({
       isModalOpen: false
     })
   }
+  
   handleSubmit = (e) => {
     this.setState({
       isSending: true
@@ -91,10 +96,13 @@ class NewsletterModal extends React.Component<NewsletterModalProps, NewsletterMo
       })
     e.preventDefault()
   }
+
   render() {
     const { isModalOpen, emailValue, isSending, isSuccess } = this.state
     const { active, boxTitle, boxIntro, boxComplete, boxSend } = this.props
-    console.log('HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH')
+
+    console.log('--- newsletter modal render')
+
     return active && (
       <NoSSR>
         <Modal centered isOpen={isModalOpen} onClose={this.onClose}>
