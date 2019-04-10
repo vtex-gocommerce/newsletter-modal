@@ -5,7 +5,6 @@ import { NoSSR } from 'vtex.render-runtime'
 import { Modal, Input, Button } from 'vtex.styleguide'
 
 import addNewsletterOmsProfile from './graphql/addNewsletterOmsProfile.gql'
-import getAppData from './graphql/getAppData.gql'
 
 const cookies = new Cookies()
 
@@ -35,8 +34,6 @@ class NewsletterModal extends React.PureComponent<NewsletterModalProps, Newslett
     boxSend: 'Enviar'
   }
 
-  installed = this.props.app.getAppData.installed
-
   state = {
     isModalOpen: false,
     emailValue: '',
@@ -45,7 +42,6 @@ class NewsletterModal extends React.PureComponent<NewsletterModalProps, Newslett
   }
 
   componentDidMount() {
-    if (!this.installed) return false
     if(this.props.active && !cookies.get('newsletterModalClosed')) {
       this.setState({
         isModalOpen: true
@@ -54,7 +50,6 @@ class NewsletterModal extends React.PureComponent<NewsletterModalProps, Newslett
   }
 
   componentDidUpdate(prevProps) {
-    if (!this.installed) return false
     if(!prevProps.active && this.props.active && !this.state.isModalOpen) {
       cookies.remove('newsletterModalClosed', { path: '/' })
       this.setState({
@@ -106,9 +101,11 @@ class NewsletterModal extends React.PureComponent<NewsletterModalProps, Newslett
 
   render() {
     const { isModalOpen, emailValue, isSending, isSuccess } = this.state
-    const { active, boxTitle, boxIntro, boxComplete, boxSend, app } = this.props
+    const { active, boxTitle, boxIntro, boxComplete, boxSend } = this.props
 
-    if (!this.installed || !active) return null
+    console.log('--- custom newsletter modal')
+
+    if (!active) return null
 
     return (
       <NoSSR>
@@ -142,11 +139,6 @@ class NewsletterModal extends React.PureComponent<NewsletterModalProps, Newslett
 const NewsletterModalWithIntl = compose(
   graphql(addNewsletterOmsProfile, {
     name: 'addNewsletterOmsProfile',
-  }),
-  graphql(getAppData, {
-    props: ({ data }) => ({
-      app: data,
-    }),
   }),
 )(NewsletterModal)
 

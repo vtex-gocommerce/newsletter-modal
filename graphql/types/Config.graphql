@@ -74,8 +74,3 @@ type UserError {
   # i.e.: ['accounts','0','name'] indicates an error at `accounts[0].name`
   path: [String!]
 }
-
-type AppData {
-  id: String
-  installed: Boolean
-}
