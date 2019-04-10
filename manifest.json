@@ -14,7 +14,6 @@
     "gocommerce.styleguide": "2.x",
     "gocommerce.gc-utils": "2.x",
     "vtex.styleguide": "9.x",
-    "vtex.store-graphql": "2.x",
     "vtex.store-components": "3.x",
     "vtex.store": "2.x"
   },

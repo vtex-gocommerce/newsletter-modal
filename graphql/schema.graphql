@@ -9,5 +9,4 @@ type Query {
 
 type Mutation {
   unsubscribe(ids: [String]): UnsubscribeResponse!
-  addNewsletterOmsProfile(data: NewsletterProfileInput): addNewsletterOmsProfilePayload
 }

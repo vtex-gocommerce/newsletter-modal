@@ -1,5 +1,4 @@
 import { biuldGraphQlError } from '@gocommerce/utils'
-import { Apps } from '@vtex/api'
 
 export const CollectionFilterRelationToMasterData = {
   EQUALS: (field, values) => `(${field}=${values.join('')})`,
