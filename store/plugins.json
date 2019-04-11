@@ -1,0 +1,4 @@
+{
+  "container > navigation-marketing > inject": "inject#newsletter",
+  "store > newsletter": "newsletter.modal"
+}

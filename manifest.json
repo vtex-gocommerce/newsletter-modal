@@ -13,16 +13,17 @@
     "gocommerce.admin-marketing": "1.x",
     "gocommerce.styleguide": "2.x",
     "gocommerce.gc-utils": "2.x",
-    "vtex.styleguide": "7.x",
-    "vtex.store-graphql": "2.x"
+    "vtex.styleguide": "9.x",
+    "vtex.store-components": "3.x",
+    "vtex.store": "2.x"
   },
   "credentialType": "absolute",
   "builders": {
     "react": "3.x",
-    "pages": "1.x",
     "node": "3.x",
     "graphql": "1.x",
-    "messages": "1.x"
+    "messages": "1.x",
+    "store": "0.x"
   },
   "policies": [
     {
