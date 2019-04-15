@@ -19,7 +19,7 @@ class NewsletterModal extends React.PureComponent<NewsletterModalProps, Newslett
     active: false,
   }
 
-  schema = {
+  public static schema = {
     title: 'editor.newsletterModal.configs.componentTitle',
     description: 'editor.newsletterModal.configs.componentDescription',
     type: 'object',

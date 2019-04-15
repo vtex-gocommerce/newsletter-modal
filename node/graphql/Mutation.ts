@@ -1,7 +1,9 @@
 import axios from 'axios'
 
-export const unsubscribe = async (param, makeApiCall) => {
-  const promisesList = param.ids.map(async id => {
+import { Param } from './index'
+
+export const unsubscribe = async (param: Param, makeApiCall: Function) => {
+  const promisesList = param.ids.map(async (id: string) => {
     const url = `/data/CL/documents/${id}`
     const data = { isNewsletterOptIn: false }
 

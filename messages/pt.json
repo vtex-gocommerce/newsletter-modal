@@ -17,12 +17,15 @@
   "newsletter-modal.admin.general-success-message": "Incrições canceladas com sucesso",
   "newsletter-modal.admin.general-error-message": "newsletter-modal.admin.general-error-message",
   "newsletter-modal.admin.search-by": "Pesquise por nome ou email",
+  "newsletter-modal.admin.empty-list.title": "Você ainda não tem nenhuma newsletter",
+  "newsletter-modal.admin.empty-list.description": "Administre suas campanhas e aumente sua base de marketing",
+  "newsletter-modal.admin.empty-list.help-text": "Ajuda sobre newsletter",
 
-  "editor.newsletterModal.configs.componentTitle": "Newsletter Popup",
-  "editor.newsletterModal.configs.componentDescription": "Popup for newsletter subscription",
-  "editor.newsletterModal.configs.active": "Active",
-  "editor.newsletterModal.configs.title": "Title",
-  "editor.newsletterModal.configs.intro": "Introduction text",
-  "editor.newsletterModal.configs.complete": "Success text",
-  "editor.newsletterModal.configs.send": "Button text"
+  "editor.newsletterModal.configs.componentTitle": "Popup de Newsletter",
+  "editor.newsletterModal.configs.componentDescription": "Popup para inscrição em newsletter",
+  "editor.newsletterModal.configs.active": "Ativo",
+  "editor.newsletterModal.configs.title": "Título",
+  "editor.newsletterModal.configs.intro": "Introdução",
+  "editor.newsletterModal.configs.complete": "Texto de sucesso",
+  "editor.newsletterModal.configs.send": "Botão"
 }
