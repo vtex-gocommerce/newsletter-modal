@@ -3,10 +3,12 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import { IconBan, ListTableTemplate } from 'gocommerce.styleguide'
 
 import ModalUnsubscribe from './components/modalUnsubscribe'
-import { Notify } from 'gocommerce.styleguide'
+import { Notify, EmptyContent } from 'gocommerce.styleguide'
 
 import { tableConfig } from './config/tableConfig'
 import { TemplatePage, WithNavigate } from 'gocommerce.gc-utils'
+
+import EmptyImage from '../../assets/images/newsletter-empty-list.svg'
 
 interface NewsletterListProps {
   newsletterList: any
@@ -86,7 +88,61 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
     )
   }
 
+  renderListTable = (isLoadingPage: boolean) => {
+    const { isLoadingData, newsletterList, query, isLoadingUnsubscribe, navigate, intl } = this.props
+    const { isModalUnsubscribeOpen } = this.state
+
+    if (!isLoadingPage && !newsletterList.nodes.length) {
+      return (
+        <EmptyContent
+          title={intl.formatMessage({ id: 'newsletter-modal.admin.empty-list.title' })}
+          description={intl.formatMessage({ id: 'newsletter-modal.admin.empty-list.description' })}
+          image={EmptyImage}
+        />
+      )
+    }
+
+    return (
+      <TemplatePage.Content>
+        {({ globalNotifications }) => (
+          <ListTableTemplate pageUrl="admin.newsletter.list" query={query} navigate={navigate}>
+            <ListTableTemplate.Filter
+              isLoading={isLoadingData}
+              placeholder={this.props.intl.formatMessage({
+                id: 'newsletter-modal.admin.search-by'
+              })}
+            />
+            <div className="flex flex-column w-100 g-mt3">
+              <ListTableTemplate.Pagination total={!isLoadingPage ? newsletterList.totalNodes : 0} />
+              <div className="w-100 center g-mv2">
+                <ListTableTemplate.Table
+                  tableConfig={tableConfig}
+                  data={!isLoadingPage ? newsletterList.nodes : []}
+                  isLoading={isLoadingData || isLoadingPage}
+                  onChange={this.handleChangeSeletedList}
+                  selectable={true}
+                  actions={this.renderActions()}
+                />
+              </div>
+              <ListTableTemplate.Pagination total={!isLoadingPage ? newsletterList.totalNodes : 0} />
+            </div>
+            <ModalUnsubscribe
+              intl={this.props.intl}
+              isOpen={isModalUnsubscribeOpen}
+              close={this.handleToggleModalUnsubscribeOpen}
+              action={this.handleUnsubscribe(globalNotifications)}
+              isActionLoading={isLoadingUnsubscribe}
+            />
+          </ListTableTemplate>
+        )}
+      </TemplatePage.Content>
+    )
+  }
+
   render() {
+    const { newsletterList } = this.props
+    const isLoadingPage: boolean = !newsletterList
+
     const breadcrumbConfig = [
       {
         title: <FormattedMessage id="newsletter-modal.admin.marketing" />
@@ -94,10 +150,9 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
       { title: <FormattedMessage id={'newsletter-modal.admin.newsletter'} /> }
     ]
 
-    const tabsConfigs = [{ id: 'default', label: <FormattedMessage id="newsletter-modal.admin.all-subscribers" /> }]
-    const { isLoadingData, newsletterList, query, isLoadingUnsubscribe, navigate } = this.props
-    const { isModalUnsubscribeOpen } = this.state
-    const isLoadingPage: boolean = !newsletterList
+    const tabsConfigs = !isLoadingPage && newsletterList.nodes.length 
+      ? [{ id: 'default', label: <FormattedMessage id="newsletter-modal.admin.all-subscribers" /> }] 
+      : null
 
     return (
       <TemplatePage title={this.props.intl.formatMessage({ id: 'newsletter-modal.admin.settings.page-title' })}>
@@ -107,39 +162,8 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
           handleChangeTab={() => {}}
           activeTab={'default'}
         />
-        <TemplatePage.Content>
-          {({ globalNotifications }) => (
-            <ListTableTemplate pageUrl="admin.newsletter.list" query={query} navigate={navigate}>
-              <ListTableTemplate.Filter
-                isLoading={isLoadingData}
-                placeholder={this.props.intl.formatMessage({
-                  id: 'newsletter-modal.admin.search-by'
-                })}
-              />
-              <div className="flex flex-column w-100 g-mt3">
-                <ListTableTemplate.Pagination total={!isLoadingPage ? newsletterList.totalNodes : 0} />
-                <div className="w-100 center g-mv2">
-                  <ListTableTemplate.Table
-                    tableConfig={tableConfig}
-                    data={!isLoadingPage ? newsletterList.nodes : []}
-                    isLoading={isLoadingData || isLoadingPage}
-                    onChange={this.handleChangeSeletedList}
-                    selectable={true}
-                    actions={this.renderActions()}
-                  />
-                </div>
-                <ListTableTemplate.Pagination total={!isLoadingPage ? newsletterList.totalNodes : 0} />
-              </div>
-              <ModalUnsubscribe
-                intl={this.props.intl}
-                isOpen={isModalUnsubscribeOpen}
-                close={this.handleToggleModalUnsubscribeOpen}
-                action={this.handleUnsubscribe(globalNotifications)}
-                isActionLoading={isLoadingUnsubscribe}
-              />
-            </ListTableTemplate>
-          )}
-        </TemplatePage.Content>
+
+        {this.renderListTable(isLoadingPage)}
       </TemplatePage>
     )
   }

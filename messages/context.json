@@ -17,6 +17,9 @@
   "newsletter-modal.admin.general-success-message": "Subscriptions successfully canceled",
   "newsletter-modal.admin.general-error-message": "newsletter-modal.admin.general-error-message",
   "newsletter-modal.admin.search-by": "Search by name or email",
+  "newsletter-modal.admin.empty-list.title": "You don't have set any newsletter yet",
+  "newsletter-modal.admin.empty-list.description": "Manage your newsletter compaigns and grow your marketing base",
+  "newsletter-modal.admin.empty-list.help-text": "Get help about newsletter",
 
   "editor.newsletterModal.configs.componentTitle": "Newsletter Popup",
   "editor.newsletterModal.configs.componentDescription": "Popup for newsletter subscription",
