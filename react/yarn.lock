@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@gocommerce/types-render@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@gocommerce/types-render/-/types-render-1.0.0.tgz#7ec860561e66e2a0ad49f288f2514564e601ba2f"
+  integrity sha512-yvhOwjVmtYCUSXTee/9iOcaW1vbAt2UnHltcy7JaJ/Mi2N2TC3EcaFZyPNaKJhNt3IswbTGAF4CsTRlRpraTiw==
+
 "@types/async@2.0.50":
   version "2.0.50"
   resolved "https://registry.yarnpkg.com/@types/async/-/async-2.0.50.tgz#117540e026d64e1846093abbd5adc7e27fda7bcb"

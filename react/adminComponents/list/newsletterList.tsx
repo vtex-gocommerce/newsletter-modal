@@ -10,6 +10,8 @@ import { TemplatePage, WithNavigate } from 'gocommerce.gc-utils'
 
 import EmptyImage from '../../assets/images/newsletter-empty-list.svg'
 
+import { hasQueryApplied } from '../../utils/functions'
+
 interface NewsletterListProps {
   newsletterList: any
   isLoadingData: boolean
@@ -17,15 +19,14 @@ interface NewsletterListProps {
   query: any
   intl?: any
   isLoadingUnsubscribe: boolean
-  unsubscribe(options: any)
-  navigate(options: any)
+  unsubscribe: (options: any) => Promise<any>
+  navigate: any 
 }
 interface NewsletterListState {
   seletedList: any[]
   isModalUnsubscribeOpen: boolean
 }
 
-@WithNavigate.HOC()
 class NewsletterList extends React.PureComponent<NewsletterListProps, NewsletterListState> {
   state = {
     seletedList: [],
@@ -92,7 +93,7 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
     const { isLoadingData, newsletterList, query, isLoadingUnsubscribe, navigate, intl } = this.props
     const { isModalUnsubscribeOpen } = this.state
 
-    if (!isLoadingPage && !newsletterList.nodes.length) {
+    if (!isLoadingPage && !newsletterList.nodes.length && !hasQueryApplied(query)) {
       return (
         <EmptyContent
           title={intl.formatMessage({ id: 'newsletter-modal.admin.empty-list.title' })}
@@ -105,7 +106,7 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
     return (
       <TemplatePage.Content>
         {({ globalNotifications }) => (
-          <ListTableTemplate pageUrl="admin.newsletter.list" query={query} navigate={navigate}>
+          <ListTableTemplate pageUrl="admin.marketing.newsletter.list" query={query} navigate={navigate}>
             <ListTableTemplate.Filter
               isLoading={isLoadingData}
               placeholder={this.props.intl.formatMessage({
@@ -169,4 +170,4 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
   }
 }
 
-export default injectIntl(NewsletterList)
+export default WithNavigate.HOC()(injectIntl(NewsletterList))

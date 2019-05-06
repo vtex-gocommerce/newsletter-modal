@@ -12,6 +12,12 @@ export function objectToQueryString(source: object, config: ConfigObjectToQueryS
   return fields.join('&')
 }
 
+export function hasQueryApplied(query: {[key: string]: string}): boolean {
+  const { activeTab, page, perPage, ...restQuery } = query
+
+  return !!Object.keys(restQuery).length
+}
+
 export function parseIntervalCollection(page: number, perPage: number): CollectionIntervalInput {
   return {
     init: (page - 1) * perPage,
