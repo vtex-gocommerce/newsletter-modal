@@ -1,25 +1,27 @@
-import { biuldGraphQlError } from '@gocommerce/utils'
+import { buildGraphQLError } from '@gocommerce/utils'
 
-export const CollectionFilterRelationToMasterData = {
-  EQUALS: (field, values) => `(${field}=${values.join('')})`,
-  NOT_EQUALS: (field, values) => `(${field}<>${values.join('')})`,
-  GREATER_THAN: (field, values) => `(${field}>=${values.join('')})`,
-  LESS_THAN: (field, values) => `(${field}<=${values.join('')})`,
-  BETWEEN: (field, values) => `(${field} between ${values[0]} and ${values[1]})`,
-  IS_NULL: (field, values) => `(${field} is null)`,
-  IS_NOT_NULL: (field, values) => `(${field} is not null)`
+interface Filter { relation: string, field: string, values: string[] }
+
+export const CollectionFilterRelationToMasterData: any = {
+  EQUALS: (field: string, values: string[]) => `(${field}=${values.join('')})`,
+  NOT_EQUALS: (field: string, values: string[]) => `(${field}<>${values.join('')})`,
+  GREATER_THAN: (field: string, values: string[]) => `(${field}>=${values.join('')})`,
+  LESS_THAN: (field: string, values: string[]) => `(${field}<=${values.join('')})`,
+  BETWEEN: (field: string, values: string[]) => `(${field} between ${values[0]} and ${values[1]})`,
+  IS_NULL: (field: string, _values: string[]) => `(${field} is null)`,
+  IS_NOT_NULL: (field: string, _values: string[]) => `(${field} is not null)`
 }
 
-export const filterToWhere = (where, option) => {
+export const filterToWhere = (where: string, option: Filter) => {
   return (
     (where ? ` ${where} AND ` : ``) + CollectionFilterRelationToMasterData[option.relation](option.field, option.values)
   )
 }
-export const parseFilterMasterData = filters => {
+export const parseFilterMasterData = (filters: Array<Filter>) => {
   return filters.reduce(filterToWhere, '')
 }
 
-export const getNewsletterList = async (param, makeApiCall) => {
+export const getNewsletterList = async (param: any, makeApiCall: Function) => {
   const filters = parseFilterMasterData(param.filters)
 
   const where = `&_where=isNewsletterOptIn=true ${filters !== '' ? `AND ${filters}` : ''}`
@@ -32,7 +34,7 @@ export const getNewsletterList = async (param, makeApiCall) => {
   const newsletterList = await makeApiCall(url, 'get', null, rangeHeader)
 
   if (newsletterList.error) {
-    throw biuldGraphQlError('GET Customers Newsletter Faild:', newsletterList.error.response.status)
+    throw buildGraphQLError('GET Customers Newsletter Faild:', newsletterList.error.response.status)
   }
 
   return {

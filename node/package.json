@@ -8,10 +8,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@gocommerce/utils": "^0.5.8",
+    "@gocommerce/utils": "^0.6.2",
+    "@vtex/api": "^3.21.2",
     "axios": "^0.17.1",
-    "bluebird": "3.5.1",
-    "@vtex/api": "^0.48.0"
+    "bluebird": "3.5.1"
   },
   "devDependencies": {
     "@types/koa": "^2.0.39"
