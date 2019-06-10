@@ -31,10 +31,10 @@ export const getNewsletterList = async (param: any, makeApiCall: Function) => {
   const url = `/data/CL/search?_fields=_all${where}${sort}${search}`
   const rangeHeader = { 'REST-Range': `resources=${param.interval.init}-${param.interval.end}` }
 
-  const newsletterList = await makeApiCall(url, 'get', null, rangeHeader)
+  const {newsletterList} = await makeApiCall(url, 'get', null, rangeHeader)
 
   if (newsletterList.error) {
-    throw buildGraphQLError('GET Customers Newsletter Faild:', newsletterList.error.response.status)
+    throw buildGraphQLError('', newsletterList.error.status)
   }
 
   return {
