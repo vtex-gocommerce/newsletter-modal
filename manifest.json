@@ -1,18 +1,21 @@
 {
   "name": "newsletter-modal",
   "vendor": "gocommerce",
-  "version": "1.0.13",
+  "version": "2.0.0",
   "title": "Newsletter",
   "description": "",
   "mustUpdateAt": "2018-04-05",
   "categories": [],
-  "registries": ["smartcheckout", "gocommerce"],
+  "registries": [
+    "smartcheckout",
+    "gocommerce"
+  ],
   "settingsSchema": {},
   "dependencies": {
-    "gocommerce.admin": "1.x",
-    "gocommerce.admin-marketing": "1.x",
+    "gocommerce.admin-marketing": "2.x",
     "gocommerce.styleguide": "2.x",
-    "gocommerce.gc-utils": "2.x",
+    "gocommerce.gc-utils": "3.x",
+    "gocommerce.gc-context": "1.x",
     "vtex.styleguide": "9.x",
     "vtex.store-components": "3.x",
     "vtex.store": "2.x"
@@ -23,7 +26,8 @@
     "node": "4.x",
     "graphql": "1.x",
     "messages": "1.x",
-    "store": "0.x"
+    "store": "0.x",
+    "admin": "0.x"
   },
   "policies": [
     {
@@ -44,5 +48,6 @@
         "host": "splunk-heavyforwarder-public.vtex.com"
       }
     }
-  ]
+  ],
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

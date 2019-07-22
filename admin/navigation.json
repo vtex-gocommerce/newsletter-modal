@@ -1,0 +1,12 @@
+[
+  {
+    "section": "gocommerce",
+    "subSection": "marketing",
+    "subSectionItems": [
+      {
+        "labelId": "admin.container.sidebar.newsletter",
+        "path": "/admin/marketing/newsletter/list"
+      }
+    ]
+  }
+]
