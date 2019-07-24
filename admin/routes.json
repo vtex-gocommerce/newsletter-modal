@@ -1,0 +1,13 @@
+{
+  "admin.marketing.newsletter": {
+    "around": ["GoCommerceContext", "wrapper"],
+    "path": "/admin/app/marketing/newsletter"
+  },
+  "wrapper": {
+    "component": "index"
+  },
+  "admin.marketing.newsletter.list": {
+    "component": "adminList",
+    "path": "/admin/app/marketing/newsletter/list"
+  }
+}
