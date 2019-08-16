@@ -5,6 +5,7 @@ type Query {
     search: String
     filters: [CollectionFilterInput2]
   ): CollectionCustomers @cacheControl(scope: PRIVATE)
+  listExportedNewsletter: ListExportedNewsletterResponse @cacheControl(scope: PRIVATE)
 }
 
 type Mutation {

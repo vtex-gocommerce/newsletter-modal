@@ -1,5 +1,7 @@
 import { buildGraphQLError } from '@gocommerce/utils'
 
+import { Context } from './index';
+
 export interface Filter { relation: string, field: string, values: string[] }
 
 export const CollectionFilterRelationToMasterData: any = {
@@ -41,4 +43,12 @@ export const getNewsletterList = async (param: any, makeApiCall: Function) => {
     nodes: newsletterList.data,
     totalNodes: parseInt(newsletterList.headers['rest-content-range'].split('/')[1])
   }
+}
+
+export const listExportedNewsletter = async (context: Context, makeApiCall: Function) => {
+  const { vtex: { account } } = context
+  const url = `https://${account}.mygocommerce.com/api/report`
+  const response = await makeApiCall(url, 'get')
+  
+  return { list: response.data }
 }

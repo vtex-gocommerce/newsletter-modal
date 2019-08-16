@@ -1,6 +1,5 @@
 import * as React from 'react'
 import NewsletterList from './newsletterList'
-import { RenderContextConsumer } from 'vtex.render-runtime'
 import { GcQuery, GcMutation } from 'gocommerce.gc-utils'
 
 import {
@@ -13,84 +12,62 @@ import {
 import getNewsletterList from './graphql/getNewsletterList.gql'
 import unsubscribe from './graphql/unsubscribe.gql'
 import requestExportNewsletterList from './graphql/requestExportNewsletterList.gql'
-
-interface indexListProps {
-  query: any
-}
+import listExportedNewsletter from './graphql/listExportedNewsletter.gql'
 
 const defaultCurrentPage: number = 1
 const defaultPerPage: number = 15
 const defaultSort = { field: 'updatedIn', direction: 'DESC' }
 
-class indexList extends React.PureComponent<indexListProps, {}> {
-  render() {
-    return (
-      <RenderContextConsumer>
-        {context => {
-          const listSidebarFilterConfig = []
-          const currentPath = context.pages[context.page].path
-
-          return (
-            <GcMutation mutation={unsubscribe}>
-              {(unsubscribe, dataUnsubcribe) => (
-                <GcMutation
-                  mutation={requestExportNewsletterList}
-                  variables={{
-                    interval: parseIntervalCollection(
-                      this.props.query.page || defaultCurrentPage,
-                      this.props.query.perPage || defaultPerPage
-                    ),
-                    sort: parseSortCollection(this.props.query.sort) || defaultSort,
-                    search: this.props.query.q || '',
-                    filters: parseFilterCollection(
-                      parseActiveSidebarFilterOptions(this.props.query, listSidebarFilterConfig),
-                      listSidebarFilterConfig
-                    )
-                  }}
-                >
-                  {(handleExport, dataExport) => (
-                    <GcQuery
-                      ssr={false}
-                      notifyOnNetworkStatusChange={true}
-                      fetchPolicy="network-only"
-                      errorPolicy="all"
-                      query={getNewsletterList}
-                      variables={{
-                        interval: parseIntervalCollection(
-                          this.props.query.page || defaultCurrentPage,
-                          this.props.query.perPage || defaultPerPage
-                        ),
-                        sort: parseSortCollection(this.props.query.sort) || defaultSort,
-                        search: this.props.query.q || '',
-                        filters: parseFilterCollection(
-                          parseActiveSidebarFilterOptions(this.props.query, listSidebarFilterConfig),
-                          listSidebarFilterConfig
-                        )
-                      }}
-                    >
-                      {({ data, loading, fetchMore }) => {
-                        return (
-                          <NewsletterList
-                            refetchNewsletterList={fetchMore}
-                            newsletterList={data.getNewsletterList}
-                            isLoadingData={loading}
-                            query={this.props.query}
-                            unsubscribe={unsubscribe}
-                            handleExport={handleExport}
-                            isLoadingUnsubscribe={dataUnsubcribe.loading || dataExport.loading}
-                          />
-                        )
-                      }}
-                    </GcQuery>
-                )}
-                </GcMutation>
-              )}
-            </GcMutation>
-          )
+export default ({ query }) => (
+  <GcMutation mutation={unsubscribe}>
+    {(unsubscribe, dataUnsubcribe) => (
+      <GcMutation
+        mutation={requestExportNewsletterList}
+        variables={{
+          interval: parseIntervalCollection(
+            query.page || defaultCurrentPage,
+            query.perPage || defaultPerPage
+          ),
+          sort: parseSortCollection(query.sort) || defaultSort,
+          search: query.q || '',
+          filters: parseFilterCollection(parseActiveSidebarFilterOptions(query, []), [])
         }}
-      </RenderContextConsumer>
-    )
-  }
-}
-
-export default indexList
+      >
+        {(handleExport, dataExport) => (
+          <GcQuery
+            ssr={false}
+            notifyOnNetworkStatusChange={true}
+            fetchPolicy="network-only"
+            errorPolicy="all"
+            query={getNewsletterList}
+            variables={{
+              interval: parseIntervalCollection(
+                query.page || defaultCurrentPage,
+                query.perPage || defaultPerPage
+              ),
+              sort: parseSortCollection(query.sort) || defaultSort,
+              search: query.q || '',
+              filters: parseFilterCollection(parseActiveSidebarFilterOptions(query, []), [])
+            }}
+          >
+            {({ data, loading, fetchMore }) => (
+              <GcQuery query={listExportedNewsletter}>
+                {({ data: exportedList, loading: exportedListLoading }) => (
+                  <NewsletterList
+                    refetchNewsletterList={fetchMore}
+                    newsletterList={data.getNewsletterList}
+                    isLoadingData={loading}
+                    query={query}
+                    unsubscribe={unsubscribe}
+                    handleExport={handleExport}
+                    isLoadingUnsubscribe={dataUnsubcribe.loading || dataExport.loading}
+                  />
+                )}
+              </GcQuery>
+            )}
+          </GcQuery>
+      )}
+      </GcMutation>
+    )}
+  </GcMutation>
+)

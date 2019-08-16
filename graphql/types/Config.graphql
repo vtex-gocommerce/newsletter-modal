@@ -32,6 +32,27 @@ type ExportNewsletterResponse {
   status: String
 }
 
+type ExportedNewsletter {
+  canceled: Boolean
+  completedDate: String
+  email: String
+  enqueueDate: String
+  finished: Boolean
+  id: String
+  lastUpdateTime: String
+  linkToDownload: String
+  outputType: String
+  percentageProcessed: Float
+  recordsSum: Int
+  startDate: String
+  zipped: Boolean
+  lastErrorMessage: String
+}
+
+type ListExportedNewsletterResponse {
+  list: [ExportedNewsletter]
+}
+
 input CollectionIntervalInput2 {
   init: Int
   end: Int

@@ -29,8 +29,8 @@ export interface ExportNewsletterListResponse {
   enqueueDate: string
   finished: boolean
   id: string
-  lastUpdateTime: null
-  linkToDownload: null
+  lastUpdateTime: string | null
+  linkToDownload: string | null
   outputType: 'CSV' | 'XLSX' | 'JSON'
   percentageProcessed: number
   recordsSum: number

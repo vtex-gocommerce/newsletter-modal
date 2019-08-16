@@ -1,6 +1,6 @@
 import { loggerMiddleware } from '@gocommerce/utils'
 
-import { getNewsletterList } from './Query'
+import { getNewsletterList, listExportedNewsletter } from './Query'
 import { unsubscribe, requestExportNewsletterList, ExportNewsletterListParam } from './Mutation'
 
 const tokenSplunk = 'dd433cc0-9106-4b0d-883a-377d57e8eb1a'
@@ -12,6 +12,7 @@ export type Info = { [key: string]: any }
 export const resolvers = loggerMiddleware(tokenSplunk, {
   Query: {
     getNewsletterList: async (_: any, param: Param, _ctx: any, _info: Info, makeApiCall: Function) => await getNewsletterList(param, makeApiCall),
+    listExportedNewsletter: async (_: any, _param: Param, ctx: Context, _info: Info, makeApiCall: Function) => await listExportedNewsletter(ctx, makeApiCall),
   },
   Mutation: {
     unsubscribe: async (_: any, param: Param, _ctx: any, _info: any, makeApiCall: Function) => await unsubscribe(param, makeApiCall),
