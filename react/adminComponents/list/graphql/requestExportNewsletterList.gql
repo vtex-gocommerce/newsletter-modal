@@ -1,0 +1,10 @@
+mutation requestExportNewsletterList(
+  $interval: CollectionIntervalInput2
+  $sort: CollectionSortInput2
+  $search: String
+  $filters: [CollectionFilterInput2]
+) {
+  requestExportNewsletterList(interval: $interval, sort: $sort, search: $search, filters: $filters) {
+    status
+  }
+}

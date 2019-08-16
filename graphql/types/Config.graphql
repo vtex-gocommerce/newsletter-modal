@@ -28,6 +28,10 @@ type UnsubscribeResponse {
   status: String
 }
 
+type ExportNewsletterResponse {
+  status: String
+}
+
 input CollectionIntervalInput2 {
   init: Int
   end: Int

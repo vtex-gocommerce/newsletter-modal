@@ -9,4 +9,10 @@ type Query {
 
 type Mutation {
   unsubscribe(ids: [String]): UnsubscribeResponse!
+  requestExportNewsletterList(
+    interval: CollectionIntervalInput2
+    sort: CollectionSortInput2
+    search: String
+    filters: [CollectionFilterInput2]
+  ): ExportNewsletterResponse
 }

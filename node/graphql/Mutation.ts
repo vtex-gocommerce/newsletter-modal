@@ -38,14 +38,14 @@ export interface ExportNewsletterListResponse {
   zipped: boolean
   lastErrorMessage: string | null
 }
-export const requestExportNewsletterList = async (context: any, params: ExportNewsletterListParam, makeApiCall: Function) => {
+export const requestExportNewsletterList = async (params: ExportNewsletterListParam, context: any, makeApiCall: Function) => {
   const { filters } = params
   const { vtex: { account } } = context
 
   const query = parseFilterMasterData(filters)
 
   /** from reports api */
-  const url = `${account}.mygocommerce.com/api/report/masterdata`
+  const url = `http://${account}.mygocommerce.com/api/report/masterdata`
   const body = {
     mapId: 'b0d4c716-bfa0-11e9-82b1-0aa5d54792e4',
     where: `isNewsletterOptIn=true ${query}`,
@@ -57,7 +57,7 @@ export const requestExportNewsletterList = async (context: any, params: ExportNe
     utcTime: '03:00:00'
   }
 
-  const response = await makeApiCall(url, 'put', body)
+  await makeApiCall(url, 'put', body)
 
-  return { status: response.status }
+  return { status: 'success' }
 }

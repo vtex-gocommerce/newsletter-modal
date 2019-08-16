@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { FormattedMessage, injectIntl } from 'react-intl'
-import { IconBan, ListTableTemplate } from 'gocommerce.styleguide'
+import { IconBan, ListTableTemplate, Button } from 'gocommerce.styleguide'
 
 import ModalUnsubscribe from './components/modalUnsubscribe'
 import { Notify, EmptyContent } from 'gocommerce.styleguide'
@@ -20,6 +20,7 @@ interface NewsletterListProps {
   intl?: any
   isLoadingUnsubscribe: boolean
   unsubscribe: (options: any) => Promise<any>
+  handleExport: () => Promise<any>
   navigate: any 
 }
 interface NewsletterListState {
@@ -141,7 +142,7 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
   }
 
   render() {
-    const { newsletterList } = this.props
+    const { newsletterList, handleExport } = this.props
     const isLoadingPage: boolean = !newsletterList
 
     const breadcrumbConfig = [
@@ -162,6 +163,16 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
           tabsConfig={tabsConfigs}
           handleChangeTab={() => {}}
           activeTab={'default'}
+          buttons={
+            <div>
+              <Button style="secondary"
+                onClick={() => handleExport() }
+                disabled={false}
+              >
+                Export
+              </Button>
+            </div>
+          }
         />
 
         {this.renderListTable(isLoadingPage)}

@@ -12,6 +12,7 @@ import {
 
 import getNewsletterList from './graphql/getNewsletterList.gql'
 import unsubscribe from './graphql/unsubscribe.gql'
+import requestExportNewsletterList from './graphql/requestExportNewsletterList.gql'
 
 interface indexListProps {
   query: any
@@ -32,12 +33,8 @@ class indexList extends React.PureComponent<indexListProps, {}> {
           return (
             <GcMutation mutation={unsubscribe}>
               {(unsubscribe, dataUnsubcribe) => (
-                <GcQuery
-                  ssr={false}
-                  notifyOnNetworkStatusChange={true}
-                  fetchPolicy="network-only"
-                  errorPolicy="all"
-                  query={getNewsletterList}
+                <GcMutation
+                  mutation={requestExportNewsletterList}
                   variables={{
                     interval: parseIntervalCollection(
                       this.props.query.page || defaultCurrentPage,
@@ -51,19 +48,42 @@ class indexList extends React.PureComponent<indexListProps, {}> {
                     )
                   }}
                 >
-                  {({ data, loading, fetchMore }) => {
-                    return (
-                      <NewsletterList
-                        refetchNewsletterList={fetchMore}
-                        newsletterList={data.getNewsletterList}
-                        isLoadingData={loading}
-                        query={this.props.query}
-                        unsubscribe={unsubscribe}
-                        isLoadingUnsubscribe={dataUnsubcribe.loading}
-                      />
-                    )
-                  }}
-                </GcQuery>
+                  {(handleExport, dataExport) => (
+                    <GcQuery
+                      ssr={false}
+                      notifyOnNetworkStatusChange={true}
+                      fetchPolicy="network-only"
+                      errorPolicy="all"
+                      query={getNewsletterList}
+                      variables={{
+                        interval: parseIntervalCollection(
+                          this.props.query.page || defaultCurrentPage,
+                          this.props.query.perPage || defaultPerPage
+                        ),
+                        sort: parseSortCollection(this.props.query.sort) || defaultSort,
+                        search: this.props.query.q || '',
+                        filters: parseFilterCollection(
+                          parseActiveSidebarFilterOptions(this.props.query, listSidebarFilterConfig),
+                          listSidebarFilterConfig
+                        )
+                      }}
+                    >
+                      {({ data, loading, fetchMore }) => {
+                        return (
+                          <NewsletterList
+                            refetchNewsletterList={fetchMore}
+                            newsletterList={data.getNewsletterList}
+                            isLoadingData={loading}
+                            query={this.props.query}
+                            unsubscribe={unsubscribe}
+                            handleExport={handleExport}
+                            isLoadingUnsubscribe={dataUnsubcribe.loading || dataExport.loading}
+                          />
+                        )
+                      }}
+                    </GcQuery>
+                )}
+                </GcMutation>
               )}
             </GcMutation>
           )
