@@ -44,6 +44,12 @@
     {
       "name": "outbound-access",
       "attrs": {
+        "host": "{{account}}.mygocommerce.com"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
         "host": "splunk-heavyforwarder-public.vtex.com"
       }
     }

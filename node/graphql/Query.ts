@@ -1,6 +1,6 @@
 import { buildGraphQLError } from '@gocommerce/utils'
 
-interface Filter { relation: string, field: string, values: string[] }
+export interface Filter { relation: string, field: string, values: string[] }
 
 export const CollectionFilterRelationToMasterData: any = {
   EQUALS: (field: string, values: string[]) => `(${field}=${values.join('')})`,
