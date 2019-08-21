@@ -13,6 +13,7 @@
   "settingsSchema": {},
   "dependencies": {
     "gocommerce.admin-marketing": "2.x",
+    "gocommerce.admin-reports": "0.x",
     "gocommerce.styleguide": "2.x",
     "gocommerce.gc-utils": "3.x",
     "gocommerce.gc-context": "1.x",

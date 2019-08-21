@@ -7,6 +7,7 @@ import { Notify, EmptyContent } from 'gocommerce.styleguide'
 
 import { tableConfig } from './config/tableConfig'
 import { TemplatePage, WithNavigate } from 'gocommerce.gc-utils'
+import { withExport, ExportButton, ExportAlert } from 'gocommerce.admin-reports'
 
 import EmptyImage from '../../assets/images/newsletter-empty-list.svg'
 
@@ -106,35 +107,41 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
     return (
       <TemplatePage.Content>
         {({ globalNotifications }) => (
-          <ListTableTemplate pageUrl="admin.marketing.newsletter.list" query={query} navigate={navigate}>
-            <ListTableTemplate.Filter
-              isLoading={isLoadingData}
-              placeholder={this.props.intl.formatMessage({
-                id: 'newsletter-modal.admin.search-by'
-              })}
-            />
-            <div className="flex flex-column w-100 g-mt3">
-              <ListTableTemplate.Pagination total={!isLoadingPage ? newsletterList.totalNodes : 0} />
-              <div className="w-100 center g-mv2">
-                <ListTableTemplate.Table
-                  tableConfig={tableConfig}
-                  data={!isLoadingPage ? newsletterList.nodes : []}
-                  isLoading={isLoadingData || isLoadingPage}
-                  onChange={this.handleChangeSeletedList}
-                  selectable={true}
-                  actions={this.renderActions()}
-                />
-              </div>
-              <ListTableTemplate.Pagination total={!isLoadingPage ? newsletterList.totalNodes : 0} />
+          <>
+            <div className="mb6">
+              <ExportAlert />
             </div>
-            <ModalUnsubscribe
-              intl={this.props.intl}
-              isOpen={isModalUnsubscribeOpen}
-              close={this.handleToggleModalUnsubscribeOpen}
-              action={this.handleUnsubscribe(globalNotifications)}
-              isActionLoading={isLoadingUnsubscribe}
-            />
-          </ListTableTemplate>
+
+            <ListTableTemplate pageUrl="admin.marketing.newsletter.list" query={query} navigate={navigate}>
+              <ListTableTemplate.Filter
+                isLoading={isLoadingData}
+                placeholder={this.props.intl.formatMessage({
+                  id: 'newsletter-modal.admin.search-by'
+                })}
+              />
+              <div className="flex flex-column w-100 g-mt3">
+                <ListTableTemplate.Pagination total={!isLoadingPage ? newsletterList.totalNodes : 0} />
+                <div className="w-100 center g-mv2">
+                  <ListTableTemplate.Table
+                    tableConfig={tableConfig}
+                    data={!isLoadingPage ? newsletterList.nodes : []}
+                    isLoading={isLoadingData || isLoadingPage}
+                    onChange={this.handleChangeSeletedList}
+                    selectable={true}
+                    actions={this.renderActions()}
+                  />
+                </div>
+                <ListTableTemplate.Pagination total={!isLoadingPage ? newsletterList.totalNodes : 0} />
+              </div>
+              <ModalUnsubscribe
+                intl={this.props.intl}
+                isOpen={isModalUnsubscribeOpen}
+                close={this.handleToggleModalUnsubscribeOpen}
+                action={this.handleUnsubscribe(globalNotifications)}
+                isActionLoading={isLoadingUnsubscribe}
+              />
+            </ListTableTemplate>
+          </>
         )}
       </TemplatePage.Content>
     )
@@ -162,6 +169,12 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
           tabsConfig={tabsConfigs}
           handleChangeTab={() => {}}
           activeTab={'default'}
+          buttons={
+            <ExportButton
+              entity="CL"
+              where="isNewsletterOptIn=true"
+            />
+          }
         />
 
         {this.renderListTable(isLoadingPage)}
@@ -170,4 +183,8 @@ class NewsletterList extends React.PureComponent<NewsletterListProps, Newsletter
   }
 }
 
-export default WithNavigate.HOC()(injectIntl(NewsletterList))
+export default WithNavigate.HOC()(
+  injectIntl(
+    withExport.HOC(NewsletterList, { storageKey: 'gc-newsletter-report' })
+  )
+)
